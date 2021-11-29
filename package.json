@@ -1,0 +1,40 @@
+{
+  "name": "create-vue3",
+  "version": "1.0.0",
+  "description": "create vue@next application",
+  "bin": {
+    "create-vue3": "bin/index.mjs"
+  },
+  "type": "module",
+  "author": "qingphong <qianphong@163.com>",
+  "license": "MIT",
+  "files": [
+    "bin",
+    "dist",
+    "template"
+  ],
+  "scripts": {
+    "dev": "tsup --watch --minify=false",
+    "build": "tsup"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@qianphong/eslint-config": "^0.0.2",
+    "@types/lodash-es": "^4.17.5",
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^16.11.10",
+    "@types/prompts": "^2.0.14",
+    "eslint": "^8.3.0",
+    "tsup": "^5.9.1",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^8.3.0",
+    "latest-version": "^6.0.0",
+    "lodash-es": "^4.17.21",
+    "minimist": "^1.2.5",
+    "ora": "^6.0.1",
+    "prompts": "^2.4.2"
+  }
+}

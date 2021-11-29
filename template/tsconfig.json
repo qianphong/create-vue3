@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "dom"],
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "types": [
+      "vite/client",
+      "vite-plugin-pages/client",
+      "vite-plugin-vue-layouts/client",
+      "unplugin-icons/types/vue3"
+    ],
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+}
