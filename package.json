@@ -1,6 +1,6 @@
 {
   "name": "create-vue3",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "create vue@next application",
   "bin": {
     "create-vue3": "bin/index.mjs"
