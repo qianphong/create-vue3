@@ -4,8 +4,8 @@ import { fileURLToPath } from 'url'
 import ora from 'ora'
 import minimist from 'minimist'
 import prompts from 'prompts'
+import defaultPkgInfo from '../template/package.json'
 import logger from './shared/logger'
-
 import {
   createWriteFn,
   emptyDir,
@@ -18,12 +18,13 @@ import {
 const argv = minimist(process.argv.slice(2), { boolean: true })
 const cwd = process.cwd()
 const targetDir = argv._[0] || ''
+
 const __dirname = fileURLToPath(import.meta.url)
 try {
   prompts(
     [
       {
-        type: targetDir ? null : 'text',
+        type: 'text',
         name: 'projectName',
         message: 'Project name:',
         initial: targetDir || 'vue3-project',
@@ -83,7 +84,7 @@ try {
       },
     })
     fs.readdirSync(templateDir).forEach(file => write(file))
-    const pkg = { name: packageName, version: '0.0.0' }
+    const pkg = { ...defaultPkgInfo, name: packageName || projectName, version: '1.0.0' }
     write('package.json', JSON.stringify(pkg, null, 2))
 
     spinner.succeed('Done. Now run:')
