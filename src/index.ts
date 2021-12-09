@@ -31,14 +31,16 @@ try {
       },
       {
         type: (_, { projectName }) => {
-          return !fs.existsSync(projectName) || isEmpty(projectName) ? null : 'confirm'
+          return !fs.existsSync(projectName) || isEmpty(projectName)
+            ? null
+            : 'confirm'
         },
         name: 'overwrite',
         message: value =>
           targetDir === '.'
             ? 'Current directory'
             : `Target directory "${value}"`
-              + 'is not empty. Remove existing files and continue?',
+            + 'is not empty. Remove existing files and continue?',
       },
       {
         type: (_, { overwrite }) => {
@@ -84,7 +86,11 @@ try {
       },
     })
     fs.readdirSync(templateDir).forEach(file => write(file))
-    const pkg = { ...defaultPkgInfo, name: packageName || projectName, version: '1.0.0' }
+    const pkg = {
+      ...defaultPkgInfo,
+      name: packageName || projectName,
+      version: '1.0.0',
+    }
     write('package.json', JSON.stringify(pkg, null, 2))
 
     spinner.succeed('Done. Now run:')
