@@ -2,3 +2,5 @@ node_modules
 .DS_Store
 dist
 *.local
+src/types/components.d.ts
+src/types/auto-imports.d.ts

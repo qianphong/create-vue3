@@ -26,7 +26,7 @@ export default defineConfig({
       resolvers: [
         IconsResolver({ prefix: 'icon', customCollections: 'custom' }),
       ],
-      dts: 'src/types/compoents.d.ts',
+      dts: 'src/types/components.d.ts',
     }),
     Icons({
       autoInstall: true,
