@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@iconify-json/mdi': ^1.0.8
   '@qianphong/eslint-config': ^0.0.2
   '@types/node': ^16.11.10
   '@types/nprogress': ^0.2.0
@@ -32,6 +33,7 @@ dependencies:
   windicss: 3.2.1
 
 devDependencies:
+  '@iconify-json/mdi': 1.0.8
   '@qianphong/eslint-config': 0.0.2_eslint@8.3.0+typescript@4.5.2
   '@types/node': 16.11.10
   '@types/nprogress': 0.2.0
@@ -424,6 +426,12 @@ packages:
 
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@iconify-json/mdi/1.0.8:
+    resolution: {integrity: sha512-ZCHCcAfFexO93LlKZ1Ou34qCD4+WdQGgMTETNPrKlzUQrAy1UV9w8Th0SJ/R4UXuDE1ddmRpeYdL7h5hfsUWfg==}
+    dependencies:
+      '@iconify/types': 1.0.12
     dev: true
 
   /@iconify/types/1.0.12:

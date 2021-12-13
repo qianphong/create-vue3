@@ -6,7 +6,7 @@
     "create-vue3": "bin/index.mjs"
   },
   "type": "module",
-  "author": "qingphong <qianphong@163.com>",
+  "author": "qing",
   "license": "MIT",
   "files": [
     "bin",
@@ -15,7 +15,9 @@
   ],
   "scripts": {
     "dev": "tsup --watch --minify=false",
-    "build": "tsup"
+    "build": "tsup",
+    "dev:template": "cd template & pnpm run dev",
+    "build:template": "cd template & pnpm run build"
   },
   "homepage": "https://github.com/qianphong/create-vue3",
   "repository": {
@@ -25,7 +27,6 @@
   "bugs": {
     "url": "https://github.com/qianphong/create-vue3/issues"
   },
-  "keywords": [],
   "devDependencies": {
     "@qianphong/eslint-config": "^0.0.2",
     "@types/lodash-es": "^4.17.5",
@@ -45,5 +46,6 @@
     "minimist": "^1.2.5",
     "ora": "^6.0.1",
     "prompts": "^2.4.2"
-  }
+  },
+  "packageManager": "pnpm@6.23.0"
 }
