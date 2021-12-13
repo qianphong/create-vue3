@@ -13,9 +13,25 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14.x
-      - run: npm i -g pnpm
-      - run: pnpm i && pnpm build 
-      - run: pnpx semantic-release
+
+      - run: npm i && npm build
+      - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{secrets.HUB_TOKEN}}
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+
+  build-deploy-template:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node
+        with:
+          node-version: 14.x
+
+      - run: cd template && npm i
+      - run: npm build:template
+
+      - uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          token: ${{secrets.HUB_TOKEN}}
+          folder: dist
