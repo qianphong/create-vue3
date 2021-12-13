@@ -12,7 +12,8 @@ jobs:
 
       - name: Install and Build 🔧 
         run: |
-          cd template & npm i
+          cd template
+          npm i
           npm run build
 
       - name: Deploy 🚀
@@ -20,4 +21,4 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.HUB_TOKEN }}
           branch: gh-pages
-          folder: template/dist
+          folder: dist
