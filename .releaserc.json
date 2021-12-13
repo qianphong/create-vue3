@@ -7,6 +7,7 @@
         "releaseRules": [
           { "type": "refactor", "release": false },
           { "type": "style", "release": "patch" },
+          { "scope": "template", "release": "patch" },
           { "scope": "no-release", "release": false }
         ]
       }
