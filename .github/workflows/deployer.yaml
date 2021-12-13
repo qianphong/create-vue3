@@ -20,4 +20,4 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.HUB_TOKEN }}
           branch: gh-pages
-          folder: build # The folder the action should deploy.
+          folder: template/dist
