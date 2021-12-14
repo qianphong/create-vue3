@@ -10,8 +10,7 @@
   "license": "MIT",
   "files": [
     "bin",
-    "dist",
-    "template"
+    "dist"
   ],
   "scripts": {
     "dev": "tsup --watch --minify=false",
@@ -29,6 +28,7 @@
   },
   "devDependencies": {
     "@qianphong/eslint-config": "^0.0.2",
+    "@types/cross-spawn": "^6.0.2",
     "@types/lodash-es": "^4.17.5",
     "@types/minimist": "^1.2.2",
     "@types/node": "^16.11.10",
@@ -41,7 +41,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^8.3.0",
-    "latest-version": "^6.0.0",
+    "cross-spawn": "^7.0.3",
     "lodash-es": "^4.17.21",
     "minimist": "^1.2.5",
     "ora": "^6.0.1",

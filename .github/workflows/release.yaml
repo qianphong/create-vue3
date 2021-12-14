@@ -14,8 +14,9 @@ jobs:
         with:
           node-version: 14.x
 
-      - run: npm i && npm build
-      - run: npx semantic-release
+      - run: npm i -g pnpm
+      - run: pnpm i && pnpm build 
+      - run: pnpx semantic-release
         env:
           GITHUB_TOKEN: ${{secrets.HUB_TOKEN}}
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
