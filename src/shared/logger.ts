@@ -8,7 +8,7 @@ enum Colors {
 }
 
 function createLogger(color: Colors) {
-  return function(...args: any[]) {
+  return function (...args: any[]) {
     console.log(chalk.hex(color)(...args))
   }
 }

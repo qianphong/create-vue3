@@ -38,8 +38,8 @@ try {
         message: value =>
           targetDir === '.'
             ? 'Current directory'
-            : `Target directory "${value}"`
-            + 'is not empty. Remove existing files and continue?',
+            : `Target directory "${value}"` +
+              'is not empty. Remove existing files and continue?',
       },
       {
         type: (_, { overwrite }) => {
@@ -66,7 +66,7 @@ try {
         process.exit(1)
       },
     },
-  ).then((res) => {
+  ).then(res => {
     const { projectName, overwrite, packageName } = res
     const root = path.join(cwd, projectName)
 

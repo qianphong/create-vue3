@@ -12,7 +12,7 @@ function buildCloneCommand(repo: string, targetPath: string, opts: Options) {
   if (opts.shallow) {
     if (userArgs.find(arg => arg.includes('--depth'))) {
       throw new Error(
-        '\'--depth\' cannot be specified when shallow is set to \'true\'',
+        '"--depth" cannot be specified when shallow is set to "true"',
       )
     }
     args.push('--depth=1')
