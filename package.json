@@ -14,9 +14,7 @@
   ],
   "scripts": {
     "dev": "tsup --watch --minify=false",
-    "build": "tsup",
-    "dev:template": "cd template & pnpm run dev",
-    "build:template": "cd template & pnpm run build"
+    "build": "tsup"
   },
   "homepage": "https://github.com/qianphong/create-vue3",
   "repository": {
