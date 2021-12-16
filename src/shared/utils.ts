@@ -29,9 +29,13 @@ export function toValidPackageName(projectName: string) {
     .replace(/[^a-z0-9-~]+/g, '-')
 }
 
-export function rimraf(dir: string) {
-  emptyDir(dir)
-  fs.rmdirSync(dir)
+export function rimraf(dir: string | string[]) {
+  if (typeof dir === 'string') {
+    emptyDir(dir)
+    fs.rmdirSync(dir)
+    return
+  }
+  if (Array.isArray(dir)) dir.forEach(item => rimraf(item))
 }
 
 export function emptyDir(dir: string) {

@@ -82,7 +82,7 @@ try {
       { shallow: true },
     )
 
-    rimraf(path.join(root, './.git'))
+    rimraf([path.join(root, './.git'), path.join(root, './.github')])
 
     writePkg(path.join(root, './package.json'), {
       name: packageName || projectName,
