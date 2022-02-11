@@ -18,10 +18,29 @@ import {
 const argv = minimist(process.argv.slice(2), { boolean: true })
 const cwd = process.cwd()
 const targetDir = argv._[0] || ''
-
+const templates = [
+  {
+    name: '普通模板',
+    git: 'https://github.com/qianphong/vite-basic-template.git',
+  },
+  {
+    name: '大屏模板',
+    git: 'https://github.com/qianphong/view-template.git',
+  },
+]
 try {
   prompts(
     [
+      {
+        type: 'select',
+        name: 'type',
+        message: '选择模板类型',
+        choices: templates.map((item, index) => ({
+          title: item.name,
+          value: index,
+        })),
+        initial: 1,
+      },
       {
         type: 'text',
         name: 'projectName',
@@ -67,20 +86,19 @@ try {
       },
     },
   ).then(res => {
-    const { projectName, overwrite, packageName } = res
+    const { projectName, overwrite, packageName, type } = res
     const root = path.join(cwd, projectName)
 
     if (overwrite) emptyDir(root)
     else if (!fs.existsSync(root)) fs.mkdirSync(root)
 
+    const repo = templates[type]?.git
+    if (!repo) throw new Error('模板不存在')
+
     const spinner = ora(`\nScaffolding project in ${root}...`)
     spinner.start()
 
-    cloneRepo(
-      'https://github.com/qianphong/vite-basic-template.git',
-      projectName,
-      { shallow: true },
-    )
+    cloneRepo(repo, projectName, { shallow: true })
 
     rimraf([path.join(root, './.git'), path.join(root, './.github')])
 
