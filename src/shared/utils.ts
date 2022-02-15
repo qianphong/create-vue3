@@ -1,26 +1,17 @@
 import fs from 'fs'
 import path from 'path'
 
-// Taken from https://github.com/sindresorhus/slash/blob/main/index.js (MIT)
-export function slash(path: string) {
-  const isExtendedLengthPath = /^\\\\\?\\/.test(path)
-  // eslint-disable-next-line no-control-regex
-  const hasNonAscii = /[^\u0000-\u0080]+/.test(path)
-  if (isExtendedLengthPath || hasNonAscii) return path
-  return path.replace(/\\/g, '/')
-}
-
 export function isEmpty(path: string) {
   return fs.readdirSync(path).length === 0
 }
 
-export function isValidPackageName(projectName: string) {
-  return /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(
-    projectName,
-  )
-}
+// export function isValidPkgName(projectName: string) {
+//   return /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(
+//     projectName,
+//   )
+// }
 
-export function toValidPackageName(projectName: string) {
+export function toValidPkgName(projectName: string) {
   return projectName
     .trim()
     .toLowerCase()

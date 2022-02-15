@@ -1,45 +1,34 @@
 import fs from 'fs'
 import path from 'path'
-import ora from 'ora'
 import minimist from 'minimist'
 import prompts from 'prompts'
-
 import logger from './shared/logger'
 import { cloneRepo } from './shared/cloneRepo'
 import {
+  rimraf,
   emptyDir,
   isEmpty,
-  isValidPackageName,
-  rimraf,
-  toValidPackageName,
+  toValidPkgName,
   writePkg,
 } from './shared/utils'
+import templates from './const/templates'
 
 const argv = minimist(process.argv.slice(2), { boolean: true })
 const cwd = process.cwd()
 const targetDir = argv._[0] || ''
-const templates = [
-  {
-    name: '普通模板',
-    git: 'https://github.com/qianphong/vite-basic-template.git',
-  },
-  {
-    name: '大屏模板',
-    git: 'https://github.com/qianphong/view-template.git',
-  },
-]
+
 try {
   prompts(
     [
       {
         type: 'select',
         name: 'type',
-        message: '选择模板类型',
+        message: 'Select template',
         choices: templates.map((item, index) => ({
           title: item.name,
           value: index,
         })),
-        initial: 1,
+        initial: 0,
       },
       {
         type: 'text',
@@ -70,14 +59,6 @@ try {
         },
         name: 'overwriteChecker',
       },
-      {
-        type: (_, { projectName }) =>
-          isValidPackageName(projectName) ? null : 'text',
-        name: 'packageName',
-        message: 'package name:',
-        initial: (_, { projectName }) => toValidPackageName(projectName),
-        validate: dir => isValidPackageName(dir) || 'Invalid package.json name',
-      },
     ],
     {
       onCancel: () => {
@@ -86,31 +67,30 @@ try {
       },
     },
   ).then(res => {
-    const { projectName, overwrite, packageName, type } = res
+    const { type, projectName, overwrite } = res
     const root = path.join(cwd, projectName)
 
     if (overwrite) emptyDir(root)
     else if (!fs.existsSync(root)) fs.mkdirSync(root)
 
     const repo = templates[type]?.git
-    if (!repo) throw new Error('模板不存在')
-
-    const spinner = ora(`\nScaffolding project in ${root}...`)
-    spinner.start()
+    if (!repo) throw new Error('Template does not exist')
 
     cloneRepo(repo, projectName, { shallow: true })
 
-    rimraf([path.join(root, './.git'), path.join(root, './.github')])
+    rimraf(
+      [path.join(root, './.git'), path.join(root, './.github')].filter(p =>
+        fs.existsSync(p),
+      ),
+    )
 
     writePkg(path.join(root, './package.json'), {
-      name: packageName || projectName,
+      name: toValidPkgName(projectName),
       version: '1.0.0',
     })
 
-    spinner.succeed('Done. Now run:')
-
+    logger.success('Done. Now run:')
     if (root !== cwd) logger.success(`  cd ${path.relative(cwd, root)}`)
-
     logger.success('  pnpm')
     logger.success('  pnpm dev')
   })

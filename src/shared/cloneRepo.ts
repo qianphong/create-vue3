@@ -1,4 +1,4 @@
-import spawn from 'cross-spawn'
+import { sync } from 'cross-spawn'
 
 type Options = {
   shallow?: boolean
@@ -31,6 +31,6 @@ function buildCloneCommand(repo: string, targetPath: string, opts: Options) {
  */
 export function cloneRepo(repo: string, directory: string, opts: Options) {
   const args = buildCloneCommand(repo, directory, opts)
-  const proc = spawn.sync('git', args, { stdio: 'inherit' })
+  const proc = sync('git', args, { stdio: 'inherit' })
   if (proc.status !== 0) throw new Error(`\n\`git ${args.join(' ')}\` exited.`)
 }
